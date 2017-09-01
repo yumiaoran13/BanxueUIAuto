@@ -1,6 +1,5 @@
 from basecase import MyTest
 from configread import ConfigRead
-import loginPage
 import unittest
 import time
 
@@ -9,8 +8,6 @@ class TestHomeWork(MyTest):
     """布置作业"""
     def test_home_work_tongbu(self):
         """按同步练习布置测试"""
-        ele = loginPage.Login(self.driver)
-        ele.login()
         eleinfo = ConfigRead('控件.ini')
         ele.click(*eleinfo.get_elinfo('学堂', '布置作业'))
         ele.click(*eleinfo.get_elinfo('布置作业', '选择学科'))

@@ -9,6 +9,5 @@ def driver():
     return dr
 
 if __name__ == '__main__':
-    driver = driver()
-    driver.close_app()
-    driver.quit()
+    dr = driver()
+    dr.quit()

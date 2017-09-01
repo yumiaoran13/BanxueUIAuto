@@ -24,10 +24,10 @@ class Login(BaseAction):
         self.click(*self.start_loc)
 
     def input_username(self):
-        self.send_key(*self.username_loc, value=self.username_value)
+        self.send_keys(*self.username_loc, value=self.username_value)
 
     def input_pwd(self):
-        self.send_key(*self.pwd_loc, value=self.pwd_value)
+        self.send_keys(*self.pwd_loc, value=self.pwd_value)
 
     def click_login(self):
         self.click(*self.login_loc)
