@@ -47,7 +47,6 @@ class StudyCircle(BaseAction):
         self.click(*self.picture_loc)
 
         pictures = self.find_elements(*self.picture_select_loc)
-        print(pictures)
         try:
             select_pictures = random.sample(pictures, 9)
             for select_picture in select_pictures:
