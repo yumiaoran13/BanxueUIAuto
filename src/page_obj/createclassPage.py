@@ -17,6 +17,7 @@ class CreateClass(BaseAction):
     subjects_loc = conf.get_elinfo('班级管理', '学科列表')
     sure_loc = conf.get_elinfo('班级管理', '确认')
     create_loc = conf.get_elinfo('班级管理', '确认创建')
+    ok_loc = conf.get_elinfo('班级管理', 'ok')
     # 选择学校页面元素
     add_loc = conf.get_elinfo('班级管理', '创建学校')
     search_loc = conf.get_elinfo('班级管理', '搜索学校')
@@ -34,30 +35,23 @@ class CreateClass(BaseAction):
     def click_school(self):
         self.click(*self.school_loc)
 
-    # 点击选择年级
-    def click_grade(self):
-        self.click(*self.grade_loc)
-
     # 随机选择年级
     def set_grade(self):
+        self.click(*self.grade_loc)
+        current_grades = []
+        # 将当前页面存在的年级加入新的列表，并随机选择
         for grade in self.grade_list_loc:
-            print(grade)
             grade = grade[1].split('|')
-            print(grade)
             if self.isexist(*grade):
-                self.click(*grade)
+                current_grades.append(grade)
+        index = len(current_grades)-1
+        self.click(*current_grades[index])
 
-    # 点击选择班级
-    def click_class(self):
-        self.click(*self.class_loc)
-
-    # 输入班级名称
+    # 设置班级名称
     def set_classname(self, classname):
+        self.click(*self.class_loc)
         self.send_keys(*self.classname_loc, value=classname)
-
-    # 选择所授学科
-    def click_subject(self):
-        self.click(*self.subject_loc)
+        self.click_sure()
 
     def set_subject(self, num=1):
         """
@@ -65,6 +59,9 @@ class CreateClass(BaseAction):
         :param num:选择学科数量
         :return:
         """
+        # 点击选择学科
+        self.click(*self.subject_loc)
+
         subject_list = self.find_elements(*self.subjects_loc)
         if num <= len(subject_list):
             for n in range(num):
@@ -74,6 +71,8 @@ class CreateClass(BaseAction):
         else:
             print('选择学科数不能超过学科总数')
 
+        self.click_sure()
+
     # 保存所选学科／保存班级名称
     def click_sure(self):
         self.click(*self.sure_loc)
@@ -81,6 +80,10 @@ class CreateClass(BaseAction):
     # 确认创建班级
     def click_create(self):
         self.click(*self.create_loc)
+
+    # 创建成功后点击创建成功提示框
+    def click_ok(self):
+        self.click(*self.ok_loc)
 
     def search(self, name):
         """

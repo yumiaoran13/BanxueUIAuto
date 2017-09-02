@@ -7,7 +7,7 @@ import configread
 class BaseAction:
     """基础操作类"""
     conf = configread.ConfigRead('控件.ini')
-    school_loc = conf.get_elinfo('导航', '学堂')
+    study_loc = conf.get_elinfo('导航', '学堂')
     communicate_loc = conf.get_elinfo('导航', '沟通')
     find_loc = conf.get_elinfo('导航', '发现')
     my_loc = conf.get_elinfo('导航', '我的')
@@ -57,8 +57,11 @@ class BaseAction:
         flag = None
         try:
             # 显示等待
-            WebDriverWait(self.driver, 15).until(lambda driver: self.driver.find_element(*loc))
+            WebDriverWait(self.driver, 5).until(lambda driver: self.driver.find_element(*loc))
             flag = True
+        # except NoSuchElementException:
+            # flag = False
+            # print('找不到元素')
         except TimeoutException:
             flag = False
             print('查找元素超时')
@@ -155,27 +158,22 @@ class BaseAction:
         title = self.get_attribute(*loc, attribute='text')
         return title
 
-    # 获取当前页面activity
     def get_activity(self):
         activity = self.driver.current_activity
         return activity
 
-    def back(self):
+    def click_back(self):
         """点击系统返回按钮"""
         self.driver.keyevent(4)
 
-    # 点击学堂
-    def click_school(self):
-        self.click(*self.school_loc)
+    def click_study(self):
+        self.click(*self.study_loc)
 
-    # 点击沟通
     def click_communicate(self):
         self.click(*self.communicate_loc)
 
-    # 点击发现
     def click_find(self):
         self.click(*self.find_loc)
 
-    # 点击我的
     def click_my(self):
         self.click(*self.my_loc)
