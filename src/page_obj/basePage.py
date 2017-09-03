@@ -140,13 +140,25 @@ class BaseAction:
 
     def get_attribute(self, *loc, attribute):
         """
-        获取控件的属性
+        获取一个控件的属性
         :param loc:
         :param attribute:属性类型
         :return: str
         """
         ele = self.find_element(*loc)
         value = ele.get_attribute(attribute)
+        return value
+
+    def get_attributes(self, *loc, index, attribute):
+        """
+        获取一组元素中某一个元素的属性
+        :param loc:
+        :param index: 元素索引
+        :param attribute: 属性类型
+        :return: str
+        """
+        eles = self.find_elements(*loc)
+        value = eles[index].get_attribute(attribute)
         return value
 
     def get_title(self, *loc):
