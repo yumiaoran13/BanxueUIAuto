@@ -10,7 +10,7 @@ class TestStudy(MyTest):
         """发布学习圈 :文字"""
         studycircle = studycirclePage.StudyCircle(self.driver)
         studycircle.click_add()
-        now = time.strftime('%Y-%m-%d %H-%M-%S')
+        now = time.strftime('%Y-%m-%d %H:%M:%S')
         value = '这是一条自动发出的只有文字的学习圈' + now
         studycircle.input_content(value)
         studycircle.set_school()
@@ -20,10 +20,21 @@ class TestStudy(MyTest):
         """发布学习圈 :文字＋图片"""
         studycircle = studycirclePage.StudyCircle(self.driver)
         studycircle.click_add()
-        now = time.strftime('%Y-%m-%d %H-%M-%S')
+        now = time.strftime('%Y-%m-%d %H:%M:%S')
         value = '这是一条自动发出的有文字和图片的学习圈' + now
         studycircle.input_content(value)
         studycircle.set_picture()
+        studycircle.set_school()
+        studycircle.click_create()
+
+    def test_add_study_photo(self):
+        """发布学习圈 :文字＋照片"""
+        studycircle = studycirclePage.StudyCircle(self.driver)
+        studycircle.click_add()
+        now = time.strftime('%Y-%m-%d %H:%M:%S')
+        value = '这是一条自动发出的有文字和相机拍摄照片的学习圈' + now
+        studycircle.input_content(value)
+        studycircle.take_photo()
         studycircle.set_school()
         studycircle.click_create()
 
