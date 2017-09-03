@@ -12,6 +12,9 @@ class StudyCircle(BaseAction):
     add_loc = conf.get_elinfo('学习圈', '添加')
     content_loc = conf.get_elinfo('学习圈', '内容')
     picture_loc = conf.get_elinfo('学习圈', '图片')
+    takephoto_loc = conf.get_elinfo('学习圈', '拍照')
+    shutter_loc = conf.get_elinfo('学习圈', '快门')
+    done_loc = conf.get_elinfo('学习圈', '确定')
     picture_select_loc = conf.get_elinfo('学习圈', '复选框')
     save_picture_loc = conf.get_elinfo('学习圈', '确认图片')
     school_loc = conf.get_elinfo('学习圈', '选择学校')
@@ -42,8 +45,8 @@ class StudyCircle(BaseAction):
         index = random.randint(0, len(school_list)-1)
         self.clicks(*self.school_list_loc, index=index)
 
-    # 随机选择相册中9张图片，不足9张则选择全部
     def set_picture(self):
+        """随机选择相册中9张图片，不足9张则选择全部"""
         self.click(*self.picture_loc)
 
         pictures = self.find_elements(*self.picture_select_loc)
@@ -57,7 +60,13 @@ class StudyCircle(BaseAction):
             print('照片不足9张，自动选择相册中所有照片')
         self.click(*self.save_picture_loc)
 
+    def take_photo(self):
+        """拍照"""
+        self.click(*self.picture_loc)
+        self.click(*self.takephoto_loc)
+        self.click(*self.shutter_loc)
+        self.click(*self.done_loc)
+
     # 点击发布
     def click_create(self):
         self.click(*self.create_loc)
-
