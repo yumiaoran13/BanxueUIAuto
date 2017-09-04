@@ -48,13 +48,12 @@ class StudyCircle(BaseAction):
     def set_picture(self):
         """随机选择相册中9张图片，不足9张则选择全部"""
         self.click(*self.picture_loc)
-
         pictures = self.find_elements(*self.picture_select_loc)
-        try:
+        if len(pictures) >= 9:
             select_pictures = random.sample(pictures, 9)
             for select_picture in select_pictures:
                 select_picture.click()
-        except ValueError:
+        else:
             for picture in pictures:
                 picture.click()
             print('照片不足9张，自动选择相册中所有照片')
