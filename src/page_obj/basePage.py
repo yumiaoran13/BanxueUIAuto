@@ -2,6 +2,7 @@
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 import configread
+import random
 
 
 class BaseAction:
@@ -177,6 +178,12 @@ class BaseAction:
     def click_back(self):
         """点击系统返回按钮"""
         self.driver.keyevent(4)
+
+    def random_index(self, *loc):
+        """获取一组元素随机索引"""
+        eles = self.find_elements(*loc)
+        index = random.randint(0, len(eles)-1)
+        return index
 
     def click_study(self):
         self.click(*self.study_loc)
