@@ -1,6 +1,7 @@
 # from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
+# from selenium.webdriver.common.touch_actions import TouchActions
 import configread
 import random
 
@@ -76,6 +77,12 @@ class BaseAction:
     def clicks(self, *loc, index):
         eles = self.find_elements(*loc)
         eles[index].click()
+
+    def long_press(self, *loc, duration=10000):
+        ele = self.find_element(*loc)
+        elx = ele.location.get('x')
+        ely = ele.location.get('y')
+        self.driver.swipe(elx, ely, elx, ely, duration=duration)
 
     def getsize(self):
         """
@@ -179,11 +186,11 @@ class BaseAction:
         """点击系统返回按钮"""
         self.driver.keyevent(4)
 
-    def random_index(self, *loc):
-        """获取一组元素随机索引"""
+    def random_ele(self, *loc):
+        """获取一组元素中随机一个元素"""
         eles = self.find_elements(*loc)
-        index = random.randint(0, len(eles)-1)
-        return index
+        randele = random.choice(eles)
+        return randele
 
     def click_study(self):
         self.click(*self.study_loc)

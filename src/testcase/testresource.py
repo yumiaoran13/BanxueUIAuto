@@ -6,7 +6,7 @@ import screenshot
 
 
 class TestResource(MyTest):
-    """学习圈"""
+    """资源"""
     def test_filter(self):
         """筛选测试"""
         testresource = resourcePage.ResourcePage(self.driver)

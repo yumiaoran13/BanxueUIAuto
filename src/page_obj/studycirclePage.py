@@ -1,6 +1,7 @@
 from basePage import BaseAction
 import configread
 import random
+import time
 
 
 class StudyCircle(BaseAction):
@@ -17,6 +18,9 @@ class StudyCircle(BaseAction):
     done_loc = conf.get_elinfo('学习圈', '确定')
     picture_select_loc = conf.get_elinfo('学习圈', '复选框')
     save_picture_loc = conf.get_elinfo('学习圈', '确认图片')
+    video_loc = conf.get_elinfo('学习圈', '视频')
+    record_loc = conf.get_elinfo('学习圈', '开始录制')
+    save_video_loc = conf.get_elinfo('学习圈', '保存视频')
     school_loc = conf.get_elinfo('学习圈', '选择学校')
     school_list_loc = conf.get_elinfo('学习圈', '学校列表')
     create_loc = conf.get_elinfo('学习圈', '发布')
@@ -41,9 +45,7 @@ class StudyCircle(BaseAction):
     # 随机选择已加入学校
     def set_school(self):
         self.click(*self.school_loc)
-        school_list = self.find_elements(*self.school_list_loc)
-        index = random.randint(0, len(school_list)-1)
-        self.clicks(*self.school_list_loc, index=index)
+        self.random_ele(*self.school_list_loc).click()
 
     def set_picture(self):
         """随机选择相册中9张图片，不足9张则选择全部"""
@@ -62,9 +64,17 @@ class StudyCircle(BaseAction):
     def take_photo(self):
         """拍照"""
         self.click(*self.picture_loc)
+        time.sleep(2)
         self.click(*self.takephoto_loc)
+        time.sleep(2)
         self.click(*self.shutter_loc)
+        time.sleep(2)
         self.click(*self.done_loc)
+
+    def set_video(self):
+        self.click(*self.video_loc)
+        self.long_press(*self.record_loc)
+        self.click(*self.save_video_loc)
 
     # 点击发布
     def click_create(self):

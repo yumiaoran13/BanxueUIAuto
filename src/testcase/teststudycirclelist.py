@@ -20,7 +20,7 @@ class TestStudyCirCle(MyTest):
         num = studycirclelist.get_praisenum()
         studycirclelist.click_praise()
         current_num = studycirclelist.get_praisenum()
-        self.assertEqual(num - current_num, 1 or -1, '点赞或取消点赞失败')
+        self.assertEqual(current_num - num, 1 or -1, '点赞或取消点赞失败')
 
 if __name__ == '__main__':
     unittest.main()

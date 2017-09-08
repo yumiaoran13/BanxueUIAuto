@@ -65,20 +65,19 @@ class CreateSchool(BaseAction):
         else:
             print('参数错误')
 
-    def click_area(self):
-        self.click(*self.area_loc)
-
     def set_pca(self):
         """
         随机选择学校所在省市区
         """
+        self.click(*self.area_loc)
         while True:
-            pca_list = self.find_elements(*self.pca_loc)
-            index = random.randint(0, len(pca_list) - 1)
-            self.clicks(*self.pca_loc, index=index)
+            self.random_ele(*self.pca_loc).click()
             # print(self.get_activity())
             if self.get_activity() == '.school.classmanager.AddSchoolActivity':
                 break
+
+    def input_address(self, address):
+        self.send_keys(*self.address_loc, value=address)
 
     def click_save(self):
         self.click(*self.save_loc)

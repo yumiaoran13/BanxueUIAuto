@@ -46,26 +46,22 @@ class ResourcePage(BaseAction):
     def set_subject(self):
         """随机选择学科"""
         self.click(*self.subject_loc)
-        index = self.random_index(*self.subject_list_loc)
-        self.clicks(*self.subject_list_loc, index=index)
+        self.random_ele(*self.subject_list_loc).click()
 
     def set_version(self):
         """随机选择教材版本"""
         self.click(*self.version_loc)
-        index = self.random_index(*self.version_list_loc)
-        self.clicks(*self.version_list_loc, index=index)
+        self.random_ele(*self.version_list_loc).click()
 
     def set_book(self):
         """随机选择册别"""
         self.click(*self.book_loc)
-        index = self.random_index(*self.book_list_loc)
-        self.clicks(*self.book_list_loc, index=index)
+        self.random_ele(*self.book_list_loc).click()
 
     def set_chapter(self):
         """随机选择册别"""
         self.click(*self.chapter_loc)
-        index = self.random_index(*self.chapter_list_loc)
-        self.clicks(*self.chapter_list_loc, index=index)
+        self.random_ele(*self.chapter_list_loc).click()
 
     def click_save(self):
         self.click(*self.save_loc)

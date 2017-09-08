@@ -35,8 +35,8 @@ class CreateClass(BaseAction):
     def click_school(self):
         self.click(*self.school_loc)
 
-    # 随机选择年级
     def set_grade(self):
+        """随机选择年级"""
         self.click(*self.grade_loc)
         current_grades = []
         # 将当前页面存在的年级加入新的列表，并随机选择
@@ -44,7 +44,7 @@ class CreateClass(BaseAction):
             grade = grade[1].split('|')
             if self.isexist(*grade):
                 current_grades.append(grade)
-        index = len(current_grades)-1
+        index = len(current_grades) - 1
         self.click(*current_grades[index])
 
     # 设置班级名称
@@ -96,6 +96,4 @@ class CreateClass(BaseAction):
 
     # 随机选择列表中的学校
     def set_school(self):
-        school_list = self.find_elements(*self.schools_loc)
-        index = random.randint(0, len(school_list)-1)
-        self.clicks(*self.schools_loc, index=index)
+        self.random_ele(*self.schools_loc).click()
