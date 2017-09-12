@@ -146,7 +146,7 @@ class BaseAction:
         ele.clear()
         ele.send_keys(value)
 
-    def get_attribute(self, *loc, attribute):
+    def get_attribute(self, *loc, attribute='text'):
         """
         获取一个控件的属性
         :param loc:
@@ -157,7 +157,7 @@ class BaseAction:
         value = ele.get_attribute(attribute)
         return value
 
-    def get_attributes(self, *loc, index, attribute):
+    def get_attributes(self, *loc, index, attribute='text'):
         """
         获取一组元素中某一个元素的属性
         :param loc:
