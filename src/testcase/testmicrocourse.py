@@ -6,6 +6,7 @@ import random
 
 class TestMicroCourse(MyTest):
     """微课"""
+
     def test_set_grade(self):
         """设置年级测试"""
         microcourse = microcoursePage.MicroCourse(self.driver)

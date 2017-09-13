@@ -17,6 +17,7 @@ class MicroCourse(BaseAction):
     version_loc = conf.get_elinfo('微课', '版本名称')
     subject_list_loc = conf.get_elinfo('微课', '学科列表')
     video_list_loc = conf.get_elinfo('微课', '视频列表')
+    video_name_loc = conf.get_elinfo('微课', '视频标题')
     topic_list_loc = conf.get_elinfo('微课', '专题列表')
 
     def __init__(self, driver):

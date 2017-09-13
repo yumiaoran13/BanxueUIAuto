@@ -141,6 +141,15 @@ class BaseAction:
         y2 = l[1] * 0.75
         self.driver.swipe(x, y1, x, y2, during)
 
+    def swipe_bottom(self, *loc):
+        """滑到一组元素底部"""
+        while True:
+            text = self.get_attributes(*loc, index=-1)
+            self.swipe_up()
+            current_text = self.get_attributes(*loc, index=-1)
+            if text == current_text:
+                break
+
     def send_keys(self, *loc, value):
         ele = self.find_element(*loc)
         ele.clear()
