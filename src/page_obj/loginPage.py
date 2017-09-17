@@ -19,8 +19,10 @@ class Login(BaseAction):
         super().__init__(driver)
 
     def click_start(self):
-        for l in range(3):
+        while True:
             self.swipe_left()
+            if self.isexist(*self.start_loc):
+                break
         self.click(*self.start_loc)
 
     def input_username(self):

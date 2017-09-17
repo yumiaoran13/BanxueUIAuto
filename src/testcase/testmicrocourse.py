@@ -43,7 +43,7 @@ class TestMicroCourse(MyTest):
         """奥数专题视频列表测试"""
         microcourse = microcoursePage.MicroCourse(self.driver)
         microcourse.set_grade(6)
-        microcourse.swipe_up()
+        microcourse.swipe_bottom(*microcourse.subject_list_loc)
         microcourse.click_subject(-2)
         microcourse.click_video()
         self.assertEqual(microcourse.get_activity(), '.video.WeikePlayActivity')
@@ -52,9 +52,9 @@ class TestMicroCourse(MyTest):
         """小升初专题视频列表测试"""
         microcourse = microcoursePage.MicroCourse(self.driver)
         microcourse.set_grade(6)
-        microcourse.swipe_up()
+        microcourse.swipe_bottom(*microcourse.subject_list_loc)
         microcourse.click_subject(-1)
-        microcourse.click_topic()
+        microcourse.switch_tab('英语')
         microcourse.click_video()
         self.assertEqual(microcourse.get_activity(), '.video.WeikePlayActivity')
 

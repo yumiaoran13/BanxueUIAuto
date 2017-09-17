@@ -19,6 +19,7 @@ class MicroCourse(BaseAction):
     video_list_loc = conf.get_elinfo('微课', '视频列表')
     video_name_loc = conf.get_elinfo('微课', '视频标题')
     topic_list_loc = conf.get_elinfo('微课', '专题列表')
+    topic_subject_loc = conf.get_elinfo('微课', '学科tab')
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -33,8 +34,7 @@ class MicroCourse(BaseAction):
         self.click(*self.grade_loc)
         grades = self.find_elements(*self.grade_list_loc)
         grade_dict = {3: grades[0], 4: grades[1], 5: grades[2], 6: grades[3], 7: grades[4], 8: grades[5], 9: grades[6],
-                      10: grades[7], 11: grades[8], 12: grades[9],
-                      }
+                      10: grades[7], 11: grades[8], 12: grades[9]}
 
         if grade in grade_dict.keys():
             grade_dict[grade].click()
@@ -78,3 +78,13 @@ class MicroCourse(BaseAction):
     # 点击随机视频
     def click_video(self):
         self.random_ele(*self.video_list_loc).click()
+
+    # 切换专题的学科
+    def switch_tab(self, value):
+        eles = self.find_elements(*self.topic_subject_loc)
+        for ele in eles:
+            if ele.get_attribute('text') == value:
+                ele.click()
+                break
+            else:
+                print('学科不存在')

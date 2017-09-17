@@ -74,7 +74,7 @@ class BaseAction:
         ele = self.find_element(*loc)
         ele.click()
 
-    def clicks(self, *loc, index):
+    def clicks(self, *loc, index=None):
         eles = self.find_elements(*loc)
         eles[index].click()
 
@@ -166,7 +166,7 @@ class BaseAction:
         value = ele.get_attribute(attribute)
         return value
 
-    def get_attributes(self, *loc, index, attribute='text'):
+    def get_attributes(self, *loc, index=None, attribute='text'):
         """
         获取一组元素中某一个元素的属性
         :param loc:
