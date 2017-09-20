@@ -39,12 +39,9 @@ class BaseAction:
         定位一组元素
         :return: element
         """
-        # eles = None
         try:
             WebDriverWait(self.driver, 15).until(lambda driver: self.driver.find_elements(*loc))
             eles = self.driver.find_elements(*loc)
-        # except NoSuchElementException:
-            # print('找不到元素')
         except TimeoutException:
             print('查找元素超时')
         else:
@@ -61,9 +58,23 @@ class BaseAction:
             # 显示等待
             WebDriverWait(self.driver, 5).until(lambda driver: self.driver.find_element(*loc))
             flag = True
-        # except NoSuchElementException:
-            # flag = False
-            # print('找不到元素')
+        except TimeoutException:
+            flag = False
+            print('查找元素超时')
+        finally:
+            return flag
+
+    def isexists(self, *loc):
+        """
+        判断元素是否存在
+        :param loc:
+        :return:Boolean
+        """
+        flag = None
+        try:
+            # 显示等待
+            WebDriverWait(self.driver, 5).until(lambda driver: self.driver.find_elements(*loc))
+            flag = True
         except TimeoutException:
             flag = False
             print('查找元素超时')

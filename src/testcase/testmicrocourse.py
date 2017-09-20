@@ -12,7 +12,7 @@ class TestMicroCourse(MyTest):
         microcourse = microcoursePage.MicroCourse(self.driver)
         microcourse.set_grade(6)
         grade = microcourse.get_grade()
-        self.assertEqual(grade, '小学六年级', '年级设置失败')
+        self.assertEqual(grade, '六年级', '年级设置失败')
 
     def test_topic_list(self):
         """切换教材版本测试"""
@@ -33,7 +33,8 @@ class TestMicroCourse(MyTest):
     def test_middleschool_video_list(self):
         """初中高中微课视频列表测试"""
         microcourse = microcoursePage.MicroCourse(self.driver)
-        microcourse.set_grade(random.randint(7, 13))
+        microcourse.set_grade(random.randint(7, 12))
+        print(microcourse.get_activity())
         microcourse.click_subject(random.randint(0, 6))
         microcourse.click_topic()
         microcourse.click_video()

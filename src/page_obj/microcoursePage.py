@@ -86,5 +86,3 @@ class MicroCourse(BaseAction):
             if ele.get_attribute('text') == value:
                 ele.click()
                 break
-            else:
-                print('学科不存在')
