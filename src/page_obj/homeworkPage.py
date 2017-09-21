@@ -41,7 +41,7 @@ class HomeWork(BaseAction):
         if homework_type == 0:
             pass
         elif homework_type == 1:
-            self.clicks(*self.point_loc)
+            self.click(*self.point_loc)
         else:
             print('参数错误')
 
@@ -96,7 +96,7 @@ class HomeWork(BaseAction):
             time.sleep(10)
             # 随机选择章节，如果所选章节没有题目，返回选择章节页面
             if self.isexists(*self.add_loc):
-                self.random_ele(*self.add_loc)
+                self.random_ele(*self.add_loc).click()
                 break
             else:
                 self.click_back()

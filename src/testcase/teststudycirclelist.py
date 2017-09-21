@@ -14,6 +14,7 @@ class TestStudyCirCle(MyTest):
         value = '这是一条自动发出的学习圈评论' + now
         studycirclelist.input_comment(value)
 
+    @unittest.skip('需要优化')
     def test_praise(self):
         """点赞、取消点赞"""
         studycirclelist = studycirclelistPage.StudyCircleList(self.driver)

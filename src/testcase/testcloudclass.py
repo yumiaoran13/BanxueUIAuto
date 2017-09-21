@@ -13,7 +13,6 @@ class CloudClass(MyTest):
         cloudclass.click_class(-1)
         cloudclass.join_class()
         time.sleep(15)
-        print(cloudclass.get_activity())
         self.assertEqual(cloudclass.get_activity(), '.school.yunclassroom.InteractiveClassroomActivity', '加入云课堂失败')
 
     def test_play_video(self):
